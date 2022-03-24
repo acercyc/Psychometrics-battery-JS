@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Radial Frequency Demo</title>
+  </head>
+
+  <body>
+    <div id="tester"></div>
+    <script src=https://unpkg.com/mathjs@10.4.0/lib/browser/math.js></script>
+    <script src="./RadialFrequency.js"></script>
+  
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <script>
+      var pic = rf_picCreator(0.1)
+      var data = [
+        {
+          z: pic,
+          type: "heatmap",
+          colorscale:[[0, "rgb(0, 0, 0)"],  [1.0, "rgb(180, 180, 180)"]]
+        },
+      ];
+
+      var layout = {
+        showlegend: false,
+        height: 600,
+        width: 600, 
+        xaxis:{scaleratio: 1},
+        yaxis:{scaleratio: 1}
+      }
+
+      Plotly.newPlot("tester", data, layout);
+    </script>
+  </body>
+</html>

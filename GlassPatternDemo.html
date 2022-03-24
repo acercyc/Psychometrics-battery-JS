@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <title>Glass Pattern Demo</title>
+</head>
+
+
+<body>
+  <div id="tester"></div>
+  <!-- Import lib -->
+  <script src=https://unpkg.com/mathjs@10.4.0/lib/browser/math.js></script>
+  <script src="./GlassPattern.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script> <!-- Plotly, only for visualisation -->
+
+
+  <script>
+    // Setting parameters 
+    var nPair = 256 
+    var d = 0.05
+    var signalRatio = 0.5
+    var scale = 1
+    var centre = [0, 0]
+
+    // Generate xy
+    var xy = genGlassPatternXY(nPair, d, signalRatio, scale, centre)
+    var [x, y] = xySplit(xy)
+    x = math.flatten(x)
+    y = math.flatten(y)
+
+    // Visualise 
+    var trace1 = {
+      x: x,
+      y: y,
+      mode: 'markers',
+      type: 'scatter'
+    }
+
+    var layout = {
+      showlegend: false,
+      height: 600,
+      width: 600, 
+      xaxis:{scaleratio: 1, range: [-1, 1]},
+      yaxis:{scaleratio: 1, range: [-1, 1]}
+    }
+    
+    var data = [trace1]
+    Plotly.newPlot('tester', data, layout)
+  </script>
+
+
+</body>
+
+</html>
